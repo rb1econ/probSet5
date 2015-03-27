@@ -38,11 +38,13 @@ var vowelCount = function(str){
 
 // 1 5 7 9 11
 var coinDet = function(num){
-	var nines;
+	var ones;
 	var fives;
-	var coinCounter = 0;
+	var sevens;
+	var nines;
 	if(num>=11){
-		var elevens = num/11;
+		var elevens = Math.floor(num/11);
+		// console.log('elevens',elevens);
 		var afterEleven = num - (elevens*11)
 		if(afterEleven>=9){
 			enterNine(afterEleven);
@@ -51,26 +53,80 @@ var coinDet = function(num){
 			enterFive(afterEleven);
 		}
 		else{
-			// do something different here::
-			return num;
+			ones = num;
 		}
 	}
 	else if(num>=9){
-		enterNine();
+		enterNine(num);
 		var enterNine = function(afterEleven){
-			nines = afterEleven/9;
+			nines = Math.floor(afterEleven/9);
 			var afterNine = afterEleven - (nines*9);
 			if(afterNine>=5){}
+			else{ones = afterNine;}
+		};
+	}
+	else if (num>=7){
+		enterSeven(num);
+		var enterSeven = function(afterNine){
+			sevens = Math.floor(afterNine/7);
+			afterSeven = afterNine - (sevens*7);
 		};
 	}
 	else if(num>=5){
-		var enterFive = function(){
-			fives = newNum
+		enterFive(num);
+		var enterFive = function(afterSeven){
+			fives = Math.floor(newNum/5);
+			var afterFive = afterSeven - (fives*5);
+			ones = afterFive;
 		};
 	}
 	else{
-		// for cases of 1 2 3 4, handle differently than return though..
-		return num;
+		ones = num;
 	}
-	return parseInt(elevens) + parseInt(nines) + parseInt(fives) + parseInt(ones);
+	// console.log('ones',ones)
+	return elevens + nines + fives + ones;
 };
+// console.log(coinDet(12));
+
+
+
+
+var romanCoin = function(num){
+	var ones;
+	var sevens;
+	var nines;
+	if(num>=11){
+		var elevens = Math.floor(num/11);
+		var afterEleven = num - elevens*11;
+		if(afterEleven>=9){
+			enterNine(afterEleven);
+		}
+		else if(afterEleven>=7){
+			enterSeven(afterEleven);
+		}
+		else if(afterEleven>=5){
+			enterFive(afterEleven);
+		}
+		else{ones = afterEleven;}
+	}
+	else if(num>=9){
+		enterNine(num);
+		function enterNine(afterEleven){
+			nines = Math.floor(afterEleven/9);
+			var afterNine = afterEleven - nines*9;
+			enterSeven(afterNine);
+		}
+	}
+	else if(num>=7){
+		enterSeven(num);
+		function enterSeven(afterNine){
+			sevens = Math.floor(afterNine);
+			var afterSeven = afterNine - sevens*7;
+			ones = afterSeven;
+		}
+	}
+	else{ones = num}
+	return elevens + nines + sevens + ones;
+};
+
+console.log(romanCoin(28));
