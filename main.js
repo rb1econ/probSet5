@@ -33,35 +33,44 @@ var vowelCount = function(str){
 	return counter
 };
 
-console.log(vowelCount('mIsalAbam AsisArkAn sAss ipmiss ouripI'))
+// console.log(vowelCount('mIsalAbam AsisArkAn sAss ipmiss ouripI'))
 
 
 // 1 5 7 9 11
 var coinDet = function(num){
+	var nines;
+	var fives;
 	var coinCounter = 0;
-	if(num/11>=1){
+	if(num>=11){
 		var elevens = num/11;
-		var newNum = num - (elevens*11)
-		if(newNum>=9){
-			enterNine();
+		var afterEleven = num - (elevens*11)
+		if(afterEleven>=9){
+			enterNine(afterEleven);
 		}
-		else if(newNum>=5){
-			enterFive();
+		else if(afterEleven>=5){
+			enterFive(afterEleven);
 		}
-		else{return num;}
+		else{
+			// do something different here::
+			return num;
+		}
 	}
-	else if(num/9>=1){
+	else if(num>=9){
 		enterNine();
-		var enterNine = function(newNum){
-			var nine = newNum/9;
-
+		var enterNine = function(afterEleven){
+			nines = afterEleven/9;
+			var afterNine = afterEleven - (nines*9);
+			if(afterNine>=5){}
 		};
 	}
-	else if(num/5>=1){
+	else if(num>=5){
 		var enterFive = function(){
-
+			fives = newNum
 		};
 	}
-	else{return num;}
+	else{
+		// for cases of 1 2 3 4, handle differently than return though..
+		return num;
+	}
 	return parseInt(elevens) + parseInt(nines) + parseInt(fives) + parseInt(ones);
 };
