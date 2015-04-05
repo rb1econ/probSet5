@@ -94,16 +94,33 @@
 
 // $('.coiner').append('<p>'+parseInt(theOutput)+'</p>');
 
-var LetterChanges = function (str) { 
-	var charray = [];
-  var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  var changed = str.split('').map(function(e){
-    var index = alphabet.indexOf(e);
-    console.log("index of " + e +"", index);
-    console.log("index plus " , alphabet[index+1])
-   	charray.push(alphabet[index+1]);
-  });
-  return charray.join(''); 
+// var LetterChanges = function (str) { 
+// 	var charray = [];
+//   var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+//   var changed = str.split('').map(function(e){
+//     var index = alphabet.indexOf(e);
+//     console.log("index of " + e +"", index);
+//     console.log("index plus " , alphabet[index+1])
+//    	charray.push(alphabet[index+1]);
+//   });
+//   return charray.join(''); 
+         
+// }
+// console.log(LetterChanges("hello"));
+
+function FirstFactorial(num) { 
+	var n = [];
+	for(var i = 1; i <=num; i++){
+		n.push(i);
+	}
+	// console.log(n);
+	var multiplier = 1;
+	n.map(function(item){
+		multiplier = multiplier*item;
+	});
+	// console.log(multiplier);
+  // code goes here  
+  return multiplier; 
          
 }
-console.log(LetterChanges("hello"));
+console.log(FirstFactorial(8));
